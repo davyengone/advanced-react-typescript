@@ -1,33 +1,41 @@
-import React, {Component} from 'react'
+import React, {Component, ComponentType} from 'react'
 import {Container} from '../../../shared/Container'
 import {Title} from '../../../shared/Title'
 import {Emojis} from '../../../shared/Emojis'
 
-export class App extends Component {
-  static propTypes = {}
 
-  state = {
-    ready: false,
-  }
+const HOC = (WrappedComponent: ComponentType) => {
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        ready: true,
-      })
-    }, 2000)
-  }
+    return class extends Component {
+      state = {
+        ready: false,
+      }
 
+      componentDidMount() {
+        setTimeout(() => {
+          this.setState({
+            ready: true,
+          })
+        }, 2000)
+      }
+
+      render(){
+        const {ready} = this.state;
+        return ready? <WrappedComponent/>: <h1>Loading....</h1>
+      }
+    }
+}
+
+export class _App extends Component {
   render() {
-    const {ready} = this.state
-    return ready ? (
+    return  (
       <Container>
         <Title>
           Your first Higher order! <Emojis>🎉</Emojis>
         </Title>
       </Container>
-    ) : (
-      <h1>Loading...</h1>
-    )
+    ) 
   }
 }
+
+export const App = HOC(_App);
