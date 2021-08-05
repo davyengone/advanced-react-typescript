@@ -1,11 +1,16 @@
-import React, {Component} from 'react'
+import React, {Component, ReactChildren} from 'react'
 import {Switch} from '../../../shared/Switch'
 import {Container} from '../../../shared/Container'
 import {Emojis} from '../../../shared/Emojis'
 
-const ToggledOn = ({active, children}) => (active ? children : null)
+type IToggle = {
+  active: boolean,
+  children: ReactChildren
+}
 
-const ToggledOff = ({active, children}) => (active ? null : children)
+const ToggledOn = ({active, children}: IToggle) => (active ? children : null)
+
+const ToggledOff = ({active, children}: IToggle) => (active ? null : children)
 
 class SwitchButton extends Component {
   static Switch = Switch
@@ -33,22 +38,18 @@ class SwitchButton extends Component {
   }
 }
 
-export class App extends Component {
-  static propTypes = {}
-
-  render() {
-    return (
-      <Container>
-        <SwitchButton>
-          <SwitchButton.On>
-            <Emojis>🎉</Emojis>
-          </SwitchButton.On>
-          <SwitchButton.Off>
-            <Emojis>😱</Emojis>
-          </SwitchButton.Off>
-          <SwitchButton.Switch />
-        </SwitchButton>
-      </Container>
-    )
-  }
+export function App (){
+  return (
+    <Container>
+      <SwitchButton>
+        <SwitchButton.On>
+          <Emojis>🎉</Emojis>
+        </SwitchButton.On>
+        <SwitchButton.Off>
+          <Emojis>😱</Emojis>
+        </SwitchButton.Off>
+        <SwitchButton.Switch />
+      </SwitchButton>
+    </Container>
+  )
 }

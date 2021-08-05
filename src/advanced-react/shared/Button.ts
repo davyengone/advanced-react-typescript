@@ -1,13 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Button = styled.button`
+export const Button = styled.button<{secondary: boolean}>`
   padding: 22px 22px 22px 22px;
   font-family: Helvetica, sans-serif;
   line-height: 0;
   font-size: 1rem;
   color: white;
   margin: 2rem;
-  background-color: ${props => (props.secondary ? 'tomato' : 'dodgerblue')};
+  background-color: ${(props) => (props.secondary ? "tomato" : "dodgerblue")};
   transition: 0.3s ease;
   border-radius: 50px;
   box-shadow: 6px 8px 19px 0 rgba(0, 0, 0, 0.2);
@@ -21,4 +21,4 @@ export const Button = styled.button`
   &:focus {
     outline: none;
   }
-`
+`;

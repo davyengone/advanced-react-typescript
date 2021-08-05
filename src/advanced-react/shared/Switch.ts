@@ -1,17 +1,15 @@
-import styled from 'styled-components'
-import React from 'react'
-import PropTypes from 'prop-types'
+import styled from "styled-components";
 
-const switchSize = `30`
-const ButtonHeight = `24`
-const blue = '#188DF2'
-const white = '#FFFFFF'
+const switchSize = `30`;
+const ButtonHeight = `24`;
+const blue = "#188DF2";
+const white = "#FFFFFF";
 
 export const SwitchBox = styled.div`
   position: relative;
   outline: 0;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   width: 60px;
   height: ${switchSize}px;
@@ -30,7 +28,7 @@ export const SwitchBox = styled.div`
 
     &:before,
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       border-radius: 30px;
       transition: all 0.25s ease-in-out;
@@ -65,26 +63,23 @@ export const SwitchBox = styled.div`
     background-color: white;
     border: 2px solid ${blue};
   }
-`
+`;
 
-export class Switch extends React.Component {
-  static propTypes = {
-    onSwitchChange: PropTypes.func.isRequired,
-    active: PropTypes.bool,
-  }
+type ISwitch = {
+  onSwitchChange: () => void;
+  active: boolean;
+};
 
-  render() {
-    const {onSwitchChange, active} = this.props
-    return (
-      <SwitchBox>
-        <input
-          type="checkbox"
-          id="check1"
-          checked={!active}
-          onChange={onSwitchChange}
-        />
-        <label htmlFor="check1" />
-      </SwitchBox>
-    )
-  }
+export function Switch({onSwitchChange, active}: ISwitch) {
+  return (
+    <SwitchBox>
+      <input
+        type="checkbox"
+        id="check1"
+        checked={!active}
+        onChange={onSwitchChange}
+      />
+      <label htmlFor="check1" />
+    </SwitchBox>
+  );
 }

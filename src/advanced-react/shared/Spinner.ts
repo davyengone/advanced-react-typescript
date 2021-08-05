@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const sizes = {
   small: {
@@ -16,15 +16,15 @@ const sizes = {
     size: 80,
     border: 12,
   },
-}
+};
 
-export const Spinner = styled.div`
+export const Spinner = styled.div<{size: "small" | "medium" | "large"}>`
   display: inline-block;
-  width: ${props => sizes[props.size].size}px;
-  height: ${props => sizes[props.size].size}px;
+  width: ${(props) => sizes[props.size].size}px;
+  height: ${(props) => sizes[props.size].size}px;
   border-radius: 50%;
-  border: ${props => sizes[props.size].border}px solid #dfe1e0;
-  border-top-color: ${props => props.color};
+  border: ${(props) => sizes[props.size].border}px solid #dfe1e0;
+  border-top-color: ${(props) => props.color};
 
   animation: spCircRot 1s infinite linear;
 
@@ -36,14 +36,9 @@ export const Spinner = styled.div`
       transform: rotate(359deg);
     }
   }
-`
-
-Spinner.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  color: PropTypes.string,
-}
+`;
 
 Spinner.defaultProps = {
-  size: 'small',
-  color: '#00CCBE',
-}
+  size: "small",
+  color: "#00CCBE",
+};

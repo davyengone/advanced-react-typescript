@@ -1,7 +1,9 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Title = styled.h1`
+type Props = {color: string; small: boolean};
+
+export const Title = styled.h1<Props>`
   font-family: Helvetica;
-  color: ${props => props.color || 'black'}
-  font-size: ${props => (props.small ? '1rem' : '2rem')};
-`
+  color: ${(props) => props.color || "black"}
+  font-size: ${(props) => (props.small ? "1rem" : "2rem")};
+`;

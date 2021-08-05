@@ -1,20 +1,23 @@
-import React, {Component} from 'react'
-import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
+import React from 'react'
+import {BrowserRouter as Routes, Link, Route, Switch, RouteComponentProps} from 'react-router-dom'
 import {Container} from '../../../shared/Container'
 import {Emojis} from '../../../shared/Emojis'
 import {Title} from '../../../shared/Title'
 
-const CharactersMap = {
+const CharactersMap: any = {
   alice: '🙍‍♀️‍',
   bob: '🙎‍♂️',
 }
 
-export class App extends Component {
-  static propTypes = {}
+// function Human({render}: {render: (props: any) => ComponentType<any>}){
+//   return <div></div>
+// }
 
-  render() {
+type TParams = { character: string };
+
+export function App() {
     return (
-      <BrowserRouter>
+      <Routes>
         <Container>
           <Link to="/">Home</Link>
           <Link to="/intro">Intro</Link>
@@ -22,6 +25,11 @@ export class App extends Component {
           <Link to="/alice">Alice's profile</Link>
           <Switch>
             <Route exact path="/" render={() => <Emojis>🏡</Emojis>} />
+            {/* <Route path="/" component={Emojis}></Route>
+            <Route path="/">
+              <Emojis>🏡</Emojis>
+            </Route> */}
+
             <Route
               path="/intro"
               render={() => (
@@ -33,18 +41,20 @@ export class App extends Component {
             />
             <Route
               path="/:character"
-              render={({match: {params: {character}}}) => (
+              render={(props: RouteComponentProps<TParams>) => {
+               const  {character} = props.match.params;
+               
+                return (
                 <Title>
                   {character}:{' '}
                   <span role="img" aria-label={character}>
                     {CharactersMap[character]}
                   </span>
                 </Title>
-              )}
+              )}}
             />
           </Switch>
         </Container>
-      </BrowserRouter>
+      </Routes>
     )
   }
-}

@@ -51,7 +51,7 @@ function connect(
         ...mapActionToProps(store.dispatch),
     }
     
-    return function(WrappedComponent: ComponentType<{}>){
+    return function(WrappedComponent: ComponentType<any>){
         return <WrappedComponent {...props}/>
     }
 }
